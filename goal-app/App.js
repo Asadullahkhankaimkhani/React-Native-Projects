@@ -25,7 +25,11 @@ export default function App() {
       </View>
       <View style={styles.goalContainer}>
         {courseGoal.map((goal) => {
-          return <Text key={goal}>{goal}</Text>;
+          return (
+            <View style={styles.listBox} key={goal}>
+              <Text style={{ color: "white" }}> {goal}</Text>
+            </View>
+          );
         })}
       </View>
     </View>
@@ -55,5 +59,12 @@ const styles = StyleSheet.create({
   },
   goalContainer: {
     flex: 10,
+  },
+  listBox: {
+    borderWidth: 1,
+    padding: 15,
+    marginTop: 10,
+    backgroundColor: "#5e0acc",
+    borderRadius: 20,
   },
 });
