@@ -1,28 +1,29 @@
 import React from "react";
-import { Pressable, StyleSheet, Text } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 const GoalItem = ({ item, removeGoalHandler }) => {
   return (
-    <Pressable
-      style={styles.listBox}
-      onPress={removeGoalHandler.bind(this, item.item.id)}
-    >
-      <Text style={{ color: "white" }}> {item.item.text}</Text>
-      <Text style={{ color: "white" }}> {item.item.createdAt}</Text>
-    </Pressable>
+    <View style={styles.listBox}>
+      <Pressable
+        android_ripple={{ color: "#210644" }}
+        onPress={removeGoalHandler.bind(this, item.item.id)}
+        style={({ pressed }) => pressed && styles.pressedItem}
+      >
+        <Text style={{ color: "white", padding: 8 }}> {item.item.text}</Text>
+      </Pressable>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   listBox: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
     borderWidth: 1,
-    padding: 15,
-    marginTop: 10,
+    margin: 8,
     backgroundColor: "#5e0acc",
-    borderRadius: 20,
+    borderRadius: 6,
+  },
+  pressedItem: {
+    opacity: 0.5,
   },
 });
 
