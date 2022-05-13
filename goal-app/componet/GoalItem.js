@@ -1,12 +1,15 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { Pressable, StyleSheet, Text } from "react-native";
 
-const GoalItem = ({ item }) => {
+const GoalItem = ({ item, removeGoalHandler }) => {
   return (
-    <View style={styles.listBox}>
+    <Pressable
+      style={styles.listBox}
+      onPress={removeGoalHandler.bind(this, item.item.id)}
+    >
       <Text style={{ color: "white" }}> {item.item.text}</Text>
       <Text style={{ color: "white" }}> {item.item.createdAt}</Text>
-    </View>
+    </Pressable>
   );
 };
 
