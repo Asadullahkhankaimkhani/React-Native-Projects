@@ -9,6 +9,9 @@ import {
 } from "react-native";
 import moment from "moment";
 
+// Components
+import GoalItem from "./compoenet/GoalItem";
+
 export default function App() {
   const [enteredGoal, setEnteredGoal] = useState("");
   const [courseGoal, setCourseGoal] = useState([]);
@@ -42,12 +45,7 @@ export default function App() {
         <FlatList
           data={courseGoal}
           renderItem={(item) => {
-            return (
-              <View style={styles.listBox}>
-                <Text style={{ color: "white" }}> {item.item.text}</Text>
-                <Text style={{ color: "white" }}> {item.item.createdAt}</Text>
-              </View>
-            );
+            return <GoalItem item={item} />;
           }}
           keyExtractor={(item, index) => {
             return item.id;
@@ -81,15 +79,5 @@ const styles = StyleSheet.create({
   },
   goalContainer: {
     flex: 10,
-  },
-  listBox: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    borderWidth: 1,
-    padding: 15,
-    marginTop: 10,
-    backgroundColor: "#5e0acc",
-    borderRadius: 20,
   },
 });
