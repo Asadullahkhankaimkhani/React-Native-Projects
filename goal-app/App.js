@@ -5,8 +5,9 @@ import {
   Text,
   TextInput,
   View,
-  ScrollView,
+  FlatList,
 } from "react-native";
+import moment from "moment";
 
 export default function App() {
   const [enteredGoal, setEnteredGoal] = useState("");
@@ -17,7 +18,14 @@ export default function App() {
   };
 
   const addGoalHandler = () => {
-    setCourseGoal((currentGoal) => [...currentGoal, enteredGoal]);
+    setCourseGoal((currentGoal) => [
+      ...currentGoal,
+      {
+        text: enteredGoal,
+        id: Math.random().toString(),
+        createdAt: moment(Date.now()).format("DD-MM-YYYY"),
+      },
+    ]);
   };
 
   return (
@@ -31,15 +39,20 @@ export default function App() {
         <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalContainer}>
-        <ScrollView>
-          {courseGoal.map((goal) => {
+        <FlatList
+          data={courseGoal}
+          renderItem={(item) => {
             return (
-              <View style={styles.listBox} key={goal}>
-                <Text style={{ color: "white" }}> {goal}</Text>
+              <View style={styles.listBox}>
+                <Text style={{ color: "white" }}> {item.item.text}</Text>
+                <Text style={{ color: "white" }}> {item.item.createdAt}</Text>
               </View>
             );
-          })}
-        </ScrollView>
+          }}
+          keyExtractor={(item, index) => {
+            return item.id;
+          }}
+        ></FlatList>
       </View>
     </View>
   );
@@ -70,6 +83,9 @@ const styles = StyleSheet.create({
     flex: 10,
   },
   listBox: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
     borderWidth: 1,
     padding: 15,
     marginTop: 10,
