@@ -1,18 +1,13 @@
 import { useState } from "react";
-import {
-  Button,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  FlatList,
-} from "react-native";
+import { Button, StyleSheet, View, FlatList } from "react-native";
 import moment from "moment";
 
-// Components
-import GoalItem from "./compoenet/GoalItem";
+// Component
+import GoalItem from "./componet/GoalItem";
+import GoalInput from "./componet/GoalInput";
 
 export default function App() {
+  // States
   const [enteredGoal, setEnteredGoal] = useState("");
   const [courseGoal, setCourseGoal] = useState([]);
 
@@ -29,18 +24,16 @@ export default function App() {
         createdAt: moment(Date.now()).format("DD-MM-YYYY"),
       },
     ]);
+    setEnteredGoal("");
   };
 
   return (
-    <View style={styles.aapContainer}>
-      <View style={styles.inlineStyle}>
-        <TextInput
-          style={styles.inputText}
-          placeholder="Your course goal!"
-          onChangeText={goalInputHandler}
-        />
-        <Button title="Add Goal" onPress={addGoalHandler} />
-      </View>
+    <View style={styles.appContainer}>
+      <GoalInput
+        goalInputHandler={goalInputHandler}
+        addGoalHandler={addGoalHandler}
+      />
+
       <View style={styles.goalContainer}>
         <FlatList
           data={courseGoal}
@@ -57,26 +50,12 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  aapContainer: {
+  appContainer: {
     flex: 1,
     paddingTop: 50,
     paddingHorizontal: 16,
   },
-  inlineStyle: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingBottom: 24,
-    borderBottomWidth: 1,
-    borderBottomColor: "#cccc",
-  },
-  inputText: {
-    width: "70%",
-    borderColor: "#cccccc",
-    borderWidth: 1,
-    marginRight: 8,
-  },
+
   goalContainer: {
     flex: 10,
   },
