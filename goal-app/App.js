@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, View, FlatList } from "react-native";
+import { StyleSheet, View, FlatList, Button } from "react-native";
 import moment from "moment";
 
 // Component
@@ -8,6 +8,7 @@ import GoalInput from "./componet/GoalInput";
 
 export default function App() {
   // States
+  const [showModel, setShowModel] = useState(false);
   const [enteredGoal, setEnteredGoal] = useState("");
   const [courseGoal, setCourseGoal] = useState([]);
 
@@ -25,6 +26,7 @@ export default function App() {
       },
     ]);
     setEnteredGoal("");
+    setShowModel(false);
   };
 
   const removeGoalHandler = (goalId) => {
@@ -33,12 +35,20 @@ export default function App() {
     });
   };
 
+  const handleModel = () => {
+    setShowModel(!showModel);
+  };
+
   return (
     <View style={styles.appContainer}>
-      <GoalInput
-        goalInputHandler={goalInputHandler}
-        addGoalHandler={addGoalHandler}
-      />
+      {showModel && (
+        <GoalInput
+          goalInputHandler={goalInputHandler}
+          addGoalHandler={addGoalHandler}
+          showModel={showModel}
+        />
+      )}
+      <Button title="Add Goal" onPress={handleModel} />
 
       <View style={styles.goalContainer}>
         <FlatList
