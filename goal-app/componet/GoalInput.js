@@ -1,7 +1,12 @@
 import React from "react";
 import { TextInput, StyleSheet, Button, View, Modal } from "react-native";
 
-const GoalInput = ({ goalInputHandler, addGoalHandler, showModal }) => {
+const GoalInput = ({
+  goalInputHandler,
+  addGoalHandler,
+  showModal,
+  onCancel,
+}) => {
   return (
     <Modal visible={showModal} animationType="slide">
       <View style={styles.inlineStyle}>
@@ -12,7 +17,7 @@ const GoalInput = ({ goalInputHandler, addGoalHandler, showModal }) => {
         />
         <View style={styles.buttonContainer}>
           <Button title="Add Goal" onPress={addGoalHandler} />
-          <Button title="Cancel" />
+          <Button title="Cancel" onPress={onCancel} />
         </View>
       </View>
     </Modal>

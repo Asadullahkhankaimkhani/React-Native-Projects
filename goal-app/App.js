@@ -39,6 +39,10 @@ export default function App() {
     setShowModel(!showModel);
   };
 
+  const cancelModel = () => {
+    setShowModel(false);
+  };
+
   return (
     <View style={styles.appContainer}>
       {showModel && (
@@ -46,6 +50,7 @@ export default function App() {
           goalInputHandler={goalInputHandler}
           addGoalHandler={addGoalHandler}
           showModel={showModel}
+          onCancel={cancelModel}
         />
       )}
       <Button title="Add Goal" onPress={handleModel} />
