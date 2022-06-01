@@ -1,7 +1,19 @@
 import React from "react";
-import { TextInput, StyleSheet, Button, View, Modal } from "react-native";
+import {
+  TextInput,
+  StyleSheet,
+  Button,
+  View,
+  Modal,
+  Image,
+} from "react-native";
 
-const GoalInput = ({ goalInputHandler, addGoalHandler, showModal }) => {
+const GoalInput = ({
+  goalInputHandler,
+  addGoalHandler,
+  showModal,
+  onCancel,
+}) => {
   return (
     <Modal
       visible={showModal}
@@ -10,13 +22,24 @@ const GoalInput = ({ goalInputHandler, addGoalHandler, showModal }) => {
       statusBarTranslucent={true}
     >
       <View style={styles.inlineStyle}>
+        <Image
+          style={styles.image}
+          source={require("../assets/images/goal.png")}
+        />
         <TextInput
           style={styles.inputText}
           placeholder="Your course goal!"
           onChangeText={goalInputHandler}
         />
+<<<<<<< HEAD
         <Button title="Add Goal" onPress={addGoalHandler} />
         <Button title="Cancel" />
+=======
+        <View style={styles.buttonContainer}>
+          <Button title="Add Goal" onPress={addGoalHandler} color="#5e0acc" />
+          <Button title="Cancel" onPress={onCancel} color="#f31282" />
+        </View>
+>>>>>>> 07c8835b8968a7b981739ef27b94b350b6cabaf8
       </View>
     </Modal>
   );
@@ -25,17 +48,34 @@ const GoalInput = ({ goalInputHandler, addGoalHandler, showModal }) => {
 const styles = StyleSheet.create({
   inlineStyle: {
     flex: 1,
+<<<<<<< HEAD
+=======
+    backgroundColor: "#311b6b",
+>>>>>>> 07c8835b8968a7b981739ef27b94b350b6cabaf8
     justifyContent: "center",
     alignItems: "center",
-    paddingBottom: 24,
-    borderBottomWidth: 1,
-    borderBottomColor: "#cccc",
+    padding: 16,
   },
   inputText: {
-    width: "70%",
-    borderColor: "#cccccc",
+    width: "90%",
+    borderColor: "#e4d0ff",
     borderWidth: 1,
     marginRight: 8,
+    borderRadius: 6,
+    backgroundColor: "#e4d0ff",
+    color: "#120438",
+    padding: 8,
+  },
+  buttonContainer: {
+    marginTop: 8,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "60%",
+  },
+  image: {
+    width: 100,
+    height: 100,
+    margin: 20,
   },
 });
 

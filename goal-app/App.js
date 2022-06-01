@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { StyleSheet, View, FlatList, Button } from "react-native";
 import moment from "moment";
+import { StatusBar } from "expo-status-bar";
 
 // Component
 import GoalItem from "./componet/GoalItem";
@@ -39,31 +40,39 @@ export default function App() {
     setShowModel(!showModel);
   };
 
-  return (
-    <View style={styles.appContainer}>
-      {showModel && (
-        <GoalInput
-          goalInputHandler={goalInputHandler}
-          addGoalHandler={addGoalHandler}
-          showModel={showModel}
-        />
-      )}
-      <Button title="Add Goal" onPress={handleModel} />
+  const cancelModel = () => {
+    setShowModel(false);
+  };
 
-      <View style={styles.goalContainer}>
-        <FlatList
-          data={courseGoal}
-          renderItem={(item) => {
-            return (
-              <GoalItem item={item} removeGoalHandler={removeGoalHandler} />
-            );
-          }}
-          keyExtractor={(item, index) => {
-            return item.id;
-          }}
-        />
+  return (
+    <>
+      <StatusBar style="light" />
+      <View style={styles.appContainer}>
+        {showModel && (
+          <GoalInput
+            goalInputHandler={goalInputHandler}
+            addGoalHandler={addGoalHandler}
+            showModel={showModel}
+            onCancel={cancelModel}
+          />
+        )}
+        <Button title="Add Goal" color="#5e0acc" onPress={handleModel} />
+
+        <View style={styles.goalContainer}>
+          <FlatList
+            data={courseGoal}
+            renderItem={(item) => {
+              return (
+                <GoalItem item={item} removeGoalHandler={removeGoalHandler} />
+              );
+            }}
+            keyExtractor={(item, index) => {
+              return item.id;
+            }}
+          />
+        </View>
       </View>
-    </View>
+    </>
   );
 }
 
