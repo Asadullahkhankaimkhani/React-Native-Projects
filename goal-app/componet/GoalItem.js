@@ -15,7 +15,7 @@ const GoalItem = ({ item, removeGoalHandler }) => {
   );
 };
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({ 
   listBox: {
     borderWidth: 1,
     margin: 8,
