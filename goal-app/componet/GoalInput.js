@@ -31,15 +31,14 @@ const GoalInput = ({
           placeholder="Your course goal!"
           onChangeText={goalInputHandler}
         />
-<<<<<<< HEAD
+
         <Button title="Add Goal" onPress={addGoalHandler} />
         <Button title="Cancel" />
-=======
+
         <View style={styles.buttonContainer}>
           <Button title="Add Goal" onPress={addGoalHandler} color="#5e0acc" />
           <Button title="Cancel" onPress={onCancel} color="#f31282" />
         </View>
->>>>>>> 07c8835b8968a7b981739ef27b94b350b6cabaf8
       </View>
     </Modal>
   );
@@ -48,10 +47,7 @@ const GoalInput = ({
 const styles = StyleSheet.create({
   inlineStyle: {
     flex: 1,
-<<<<<<< HEAD
-=======
     backgroundColor: "#311b6b",
->>>>>>> 07c8835b8968a7b981739ef27b94b350b6cabaf8
     justifyContent: "center",
     alignItems: "center",
     padding: 16,
