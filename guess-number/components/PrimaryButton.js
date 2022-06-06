@@ -9,8 +9,8 @@ export default function PrimaryButton({ children }) {
         android_ripple={{ color: "red" }}
         style={({ pressed }) =>
           pressed
-            ? [styles.buttonContainer, styles.pressed]
-            : styles.buttonContainer
+            ? [styles.buttonInnerContainer, styles.pressed]
+            : styles.buttonInnerContainer
         }
       >
         <Text style={styles.buttonText}>{children}</Text>
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "#fff",
-    fontSize: 24,
+    fontSize: 15,
     fontWeight: "bold",
     textAlign: "center",
   },
