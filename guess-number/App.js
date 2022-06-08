@@ -3,7 +3,7 @@ import StartGameScreen from "./screens/StartGameScreen";
 
 export default function App() {
   return (
-    <View>
+    <View style={styles.center}>
       <StartGameScreen />
     </View>
   );
