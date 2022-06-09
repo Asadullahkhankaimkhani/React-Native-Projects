@@ -12,6 +12,5 @@ export default function App() {
 const styles = StyleSheet.create({
   center: {
     flex: 1,
-    backgroundColor: "#fdfdce",
+    backgroundColor: "#cccc",
   },
-});
