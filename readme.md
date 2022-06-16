@@ -1,1 +1,1 @@
-## React Native Apps By Maximilian Schwarzmüller and others 
+## React Native Apps By Maximilian Schwarzmüller 
