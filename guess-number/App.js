@@ -19,7 +19,7 @@ export default function App() {
     />
   );
   if (selectedNumber) {
-    screen = <GameScreen />;
+    screen = <GameScreen userNumber={selectedNumber} />;
   }
   return (
     <LinearGradient

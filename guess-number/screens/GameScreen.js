@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Alert } from "react-native";
 import Title from "../components/UI/Title";
 import NumberContainer from "../components/Game/NumberContainer";
+import PrimaryButton from "../components/UI/PrimaryButton";
 
 // create a function generateRandomBetween(min, max , exclude) that returns a random number between min and max (inclusive)  except for the number exclude
 function generateRandomBetween(min, max, exclude) {
@@ -11,10 +12,32 @@ function generateRandomBetween(min, max, exclude) {
   return rndNum === exclude ? generateRandomBetween(min, max, exclude) : rndNum;
 }
 
+let min = 1;
+let max = 100;
+
 export default function GameScreen({ userNumber }) {
   const [currentGuess, setCurrentGuess] = React.useState(
-    generateRandomBetween(1, 100, userNumber)
+    generateRandomBetween(min, max, userNumber)
   );
+
+  const nextGuessHandler = (direction) => {
+    if (
+      (direction === "lower" && currentGuess < userNumber) ||
+      (direction === "higher" && currentGuess > userNumber)
+    ) {
+      Alert.alert("Don't lie!", "You know this is wrong...", [
+        { text: "Sorry!", style: "cancel" },
+      ]);
+      return;
+    }
+    if (direction === "lower") {
+      max = currentGuess - 1;
+    } else {
+      min = currentGuess + 1;
+    }
+    const rndNum = generateRandomBetween(min, max, currentGuess);
+    setCurrentGuess(rndNum);
+  };
 
   return (
     <View style={styles.screen}>
@@ -22,7 +45,14 @@ export default function GameScreen({ userNumber }) {
       <NumberContainer>{currentGuess}</NumberContainer>
       <View>
         <Text>Higher or Lower</Text>
-        {/* + and - */}
+        <View>
+          <PrimaryButton onPress={nextGuessHandler.bind(this, "higher")}>
+            +
+          </PrimaryButton>
+          <PrimaryButton onPress={nextGuessHandler.bind(this, "lower")}>
+            -
+          </PrimaryButton>
+        </View>
       </View>
       <View>{/* Guess Logs */}</View>
     </View>
