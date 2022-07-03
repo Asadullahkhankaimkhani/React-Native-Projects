@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, Alert } from "react-native";
 import Title from "../components/UI/Title";
 import NumberContainer from "../components/Game/NumberContainer";
 import PrimaryButton from "../components/UI/PrimaryButton";
+import Card from "../components/UI/Card";
+import InstructionText from "../components/UI/InstructionText";
 
 // create a function generateRandomBetween(min, max , exclude) that returns a random number between min and max (inclusive)  except for the number exclude
 function generateRandomBetween(min, max, exclude) {
@@ -12,8 +14,8 @@ function generateRandomBetween(min, max, exclude) {
   return rndNum === exclude ? generateRandomBetween(min, max, exclude) : rndNum;
 }
 
-// let min = 1;
-// let max = 100;
+let min = 1;
+let max = 100;
 
 export default function GameScreen({ userNumber, onGameOver }) {
   const [currentGuess, setCurrentGuess] = useState(
@@ -49,8 +51,8 @@ export default function GameScreen({ userNumber, onGameOver }) {
     <View style={styles.screen}>
       <Title>Opponent's Guess</Title>
       <NumberContainer>{currentGuess}</NumberContainer>
-      <View>
-        <Text>Higher or Lower</Text>
+      <Card>
+        <InstructionText>Higher or Lower</InstructionText>
         <View>
           <PrimaryButton onPress={nextGuessHandler.bind(this, "higher")}>
             +
@@ -59,7 +61,7 @@ export default function GameScreen({ userNumber, onGameOver }) {
             -
           </PrimaryButton>
         </View>
-      </View>
+      </Card>
       <View>{/* Guess Logs */}</View>
     </View>
   );
