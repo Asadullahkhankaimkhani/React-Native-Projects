@@ -5,6 +5,7 @@ import NumberContainer from "../components/Game/NumberContainer";
 import PrimaryButton from "../components/UI/PrimaryButton";
 import Card from "../components/UI/Card";
 import InstructionText from "../components/UI/InstructionText";
+import { Ionicons } from "@expo/vector-icons";
 
 // create a function generateRandomBetween(min, max , exclude) that returns a random number between min and max (inclusive)  except for the number exclude
 function generateRandomBetween(min, max, exclude) {
@@ -58,12 +59,12 @@ export default function GameScreen({ userNumber, onGameOver }) {
         <View style={styles.row}>
           <View style={styles.buttonContainer}>
             <PrimaryButton onPress={nextGuessHandler.bind(this, "higher")}>
-              +
+              <Ionicons name="md-add" size={24} color="white" />
             </PrimaryButton>
           </View>
           <View style={styles.buttonContainer}>
             <PrimaryButton onPress={nextGuessHandler.bind(this, "lower")}>
-              -
+              <Ionicons name="md-remove" size={24} color="white" />
             </PrimaryButton>
           </View>
         </View>
