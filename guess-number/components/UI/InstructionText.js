@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
   instructionText: {
     marginTop: 20,
     fontSize: 18,
+    fontFamily: "open-sans",
     textAlign: "center",
     color: Colors.secondary,
   },
