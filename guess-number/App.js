@@ -64,6 +64,7 @@ export default function App() {
 const styles = StyleSheet.create({
   center: {
     flex: 1,
+    // Center
   },
   backgroundImage: {
     opacity: 0.25,
